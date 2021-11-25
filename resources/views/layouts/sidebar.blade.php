@@ -9,7 +9,7 @@
                         </div>
                     </div>
                     <div class="col-12 pt-2">
-                        <div class="sidebar-brand-text row text-uft">UFT</div>
+                        <div class="sidebar-brand-text row text-uft">RC</div>
                     </div>
                 </div>
             </a>
@@ -29,52 +29,6 @@
 
             <!-- Heading -->
             <!-- Nav Item - Pages Collapse Menu -->
-            @if (Auth::user()->rol_id == 1 || Auth::user()->rol_id == 5)
-            <li class="nav-item">
-                <a class="nav-link collapsed text-uft" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-users"></i>
-                    <span>Usuarios</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-uft py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ route('usuario/administrativo') }}">Director de Postgrado</a>
-                        <a class="collapse-item" href="{{ route('usuario/directivo') }}">Coordinador</a>
-                        <a class="collapse-item" href="{{ route('usuario/asistente') }}">Asistentes de Postgrado</a>
-                        <a class="collapse-item" href="{{ route('estudiantes.index') }}">Estudiantes</a>
-                    </div>
-                </div>
-            </li>
-            <hr class="sidebar-divider">
-            @endif
-            @if (Auth::user()->rol_id == 2 || Auth::user()->rol_id == 3)
-            <li class="nav-item">
-                <a class="nav-link collapsed text-uft" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-users"></i>
-                    <span>Usuarios</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-uft py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ route('estudiantes.index') }}">Estudiantes</a>
-                    </div>
-                </div>
-            </li>
-             <!-- Divider -->
-             <hr class="sidebar-divider my-0">
-            @endif
-
-             @if (Auth::user()->rol_id == 1 || Auth::user()->rol_id == 5)
-             <li class="nav-item">
-                 <a class="nav-link collapsed text-uft" href="{{ route('reports') }}">
-                     <i class="fas fa-fw fa-file"></i>
-                     <span>Reportes</span>
-                 </a>
-             </li>
-             <hr class="sidebar-divider">
-             @endif
-            <!-- Nav Item - Utilities Collapse Menu -->
-            @if (Auth::user()->rol_id == 1 || Auth::user()->rol_id == 5)
             <li class="nav-item">
                 <a class="nav-link collapsed text-uft" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
@@ -84,51 +38,11 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-uft  py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{ route('lapso.index') }}">Lapso</a>
+                        <a class="collapse-item" href="">Lapso</a>
                     </div>
                 </div>
             </li>
             <hr class="sidebar-divider">
-            @endif
-
-            @if (Auth::user()->rol_id == 4)
-            <li class="nav-item">
-                <a class="nav-link collapsed text-uft" href="{{ route('estudiantes.show',Auth::user()->estudiante(Auth::user()->id)) }}">
-                    <span>Mi perfil</span>
-                </a>
-            </li>
-            <hr class="sidebar-divider">
-
-                @if (Auth::user()->doctorado_id == 3)
-                    <li class="nav-item">
-                        <a class="nav-link collapsed text-uft" href="#" data-toggle="collapse" data-target="#collapseFour"
-                        aria-expanded="true" aria-controls="collapseFour">
-                        <i class="fas fa-fw fa-users"></i>
-                        <span>Mis Documentos</span>
-                    </a>
-                    <div id="collapseFour" class="collapse" aria-labelledby="collapseFour" data-parent="#accordionSidebar">
-                        <div class="bg-uft py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="{{ route('estudiantes/documentos/ciencias',Auth::user()->estudiante(Auth::user()->id)) }}">Ciencias de la Educación</a>
-                            <a class="collapse-item" href="{{ route('estudiantes/documentos/gerencia',Auth::user()->estudiante(Auth::user()->id)) }}">Gerencia Avanzada</a>
-                        </div>
-                    </div>
-                    </li>
-                @else
-                <li class="nav-item">
-                    @if (Auth::user()->doctorado_id == 1)
-                    <a class="nav-link collapsed text-uft" href="{{ route('estudiantes/documentos/gerencia',Auth::user()->estudiante(Auth::user()->id)) }}">
-                        <span>Mis Documentos</span>
-                    </a>
-                    @endif
-                    @if (Auth::user()->doctorado_id == 2)
-                    <a class="nav-link collapsed text-uft" href="{{ route('estudiantes/documentos/ciencias',Auth::user()->estudiante(Auth::user()->id)) }}">
-                        <span>Mis Documentos</span>
-                    </a>
-                    @endif
-                </li>
-                @endif
-            <hr class="sidebar-divider">
-            @endif
         </ul>
 
 
