@@ -30,12 +30,14 @@ class RolesAndPermissionsSeeder extends Seeder
         $user = factory(User::class)->create([
             'name' => 'Example User',
             'email' => 'test@mail.com',
+            'password' => bcrypt('laravel')
         ]);
         $user->assignRole($role1);
 
         $user = factory(User::class)->create([
             'name' => 'Example Admin User',
             'email' => 'admin@mail.com',
+            'password' => bcrypt('laravel')
         ]);
         $user->assignRole($superadmin);
     }
