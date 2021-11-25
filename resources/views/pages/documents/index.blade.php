@@ -59,7 +59,12 @@
                                         @foreach ($documents as $d)
                                         <tr>
                                             <td>{{ $d->name ?? null }}</td>
-                                            <td>{{ $d->url_file ?? null }}</td>
+
+                                            <td> 
+                                                @if($d->url_file != '' || $d->url_file != null)
+                                                <a class="btn btn-uft btn-sm" href="{{ route('documents.download',$d->id) }}">{{ $d->url_file }}</a>
+                                                @endif
+                                            </td>
                                             <td>{{ $d->created_at ?? null }}</td>
                                             <td>
                                                 <a class="btn btn-uft btn-sm" href="{{ route('documents.destroy',$d->id) }}"><i class="fas fa-trash"></i></a>

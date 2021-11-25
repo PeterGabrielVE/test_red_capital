@@ -21,8 +21,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
-
 Route::resource('documents', 'DocumentController');
+Route::get('documents/download/{id?}', 'DocumentController@download')->name('documents.download');
 
 

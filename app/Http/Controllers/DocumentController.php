@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Menu;
+use App\Document;
 
 class DocumentController extends Controller
 {
@@ -33,7 +34,7 @@ class DocumentController extends Controller
         if($request->hasFile('files')) :
                 $var = date_create();
                 $time = date_format($var, 'YmdHis');
-                $fileName = $time . '-' . $files->extension();
+                $fileName = $time . '.' . $files->extension();
                 $files->move(public_path('uploads'), $fileName);
         else:
             return redirect()->back()->with('error', 'Seleccione documento');
@@ -41,6 +42,12 @@ class DocumentController extends Controller
 
         DB::table('documents')->insert(array('id_user' => $request->id_user,'url_file' => $fileName,'created_at' => $var));
         return redirect()->back()->with('message', 'Se ha subido el documento exitosamente');
+    }
+
+    public function download($fileId){  
+        $entry = Document::where('id',$fileId)->firstOrFail();
+        $pathToFile=public_path('uploads').'/'.$entry->url_file;
+        return response()->download($pathToFile);           
     }
 
 }
