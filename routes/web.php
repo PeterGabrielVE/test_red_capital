@@ -23,4 +23,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/documents', 'DocumentController@index')->name('documents');
+Route::resource('documents', 'DocumentController');
+
+
