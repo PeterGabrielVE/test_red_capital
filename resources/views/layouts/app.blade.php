@@ -11,11 +11,12 @@
     <title>{{config('app.name')}}</title>
      @toastr_css
     <!-- CSS -->
-    <link rel="stylesheet" href=  {{asset('css/app.css')}}>
-    <link rel="stylesheet" href=  {{asset('css/all.min.css')}}>
-    <link rel="stylesheet" href=  {{asset('css/sb-admin-2.min.css')}}>
-    <link rel="stylesheet" href=  {{asset('css/styles.css')}}>
-    <link rel="stylesheet" href=  {{asset('bootstrap-fileinput/css/fileinput.css')}}>
+    <link rel="stylesheet" href={{asset('css/app.css')}}>
+    <link rel="stylesheet" href={{asset('css/all.min.css')}}>
+    <link rel="stylesheet" href={{asset('css/sb-admin-2.min.css')}}>
+    <link rel="stylesheet" href={{asset('css/styles.css')}}>
+    
+<link href="https://cdn.jsdelivr.net/gh/kartik-v/bootstrap-fileinput@5.2.5/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 

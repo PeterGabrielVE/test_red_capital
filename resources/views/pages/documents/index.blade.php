@@ -21,10 +21,15 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Usuarios</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Documentos</h1>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
+                    @if(session()->has('message'))
+                        <div class="alert alert-success">
+                            {{ session()->get('message') }}
+                        </div>
+                    @endif
                         <div class="card-header py-3">
                             <div class="row">
                                 <div class="col-lg-12 margin-tb">
@@ -32,7 +37,7 @@
                                         <h6 class="m-0 font-weight-bold text-uft">Listado Documentos</h6>
                                     </div>
                                     <div class="pull-right">
-                                        <a data-toggle="modal" data-target="#create" class="btn btn-uft" role="button"><i class="fas fa-plus pr-2"></i>Agregar Usuario</a>
+                                        <a data-toggle="modal" data-target="#create" class="btn btn-uft" role="button"><i class="fas fa-plus pr-2"></i>Agregar Documento</a>
                                     </div>
                                 </div>
                             </div>
@@ -43,10 +48,8 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Nombres y Apellidos</th>
-                                            <th>Correo Electronico</th>
-                                            <th>Perfil</th>
-
+                                            <th>Nombre Completo</th>
+                                            <th>Documento</th>
                                             <th style="width:16%">Opciones</th>
                                         </tr>
                                     </thead>
@@ -64,7 +67,7 @@
                                                 @endif
                                             </td>
                                             <td>
-                                                <a class="btn btn-uft btn-sm" href="{{ route('documents.delete',$user->id) }}"><i class="fas fa-trash"></i></a>
+                                                <a class="btn btn-uft btn-sm" href="{{ route('documents.destroy',$user->id) }}"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -88,4 +91,22 @@
 
     </div>
     <!-- End of Page Wrapper -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $("#form_document").on("submit", function (e) {
+            let user = $('#id_user').val();
+            let file = $('#form-file').val();
+
+            if(user === '' || user === null){
+                alert('Seleccione Usuario');
+            }
+
+            if(file === '' || file === null){
+                alert('Suba archivo');
+            }
+        });
+	function cerrarModal(){
+		$('#create').modal('hide');
+	}
+</script>
 @endsection
