@@ -15,7 +15,8 @@ class DocumentController extends Controller
 
     public function index()
     {
-        $documents = DB::table('documents')->get();
+        $documents = DB::table('documents')->leftjoin('users','documents.id_user','users.id')
+        ->select('documents.*','users.name as name')->get();
         $users = DB::table('users')->pluck('name','id');
         $menus = Menu::all();
         $submenus = DB::table('submenus')->select('name','id','id_menu')->get();
@@ -38,7 +39,7 @@ class DocumentController extends Controller
             return redirect()->back()->with('error', 'Seleccione documento');
         endif;
 
-        DB::table('documents')->insert(array('id_user' => $request->id_user,'url_file' => $fileName));
+        DB::table('documents')->insert(array('id_user' => $request->id_user,'url_file' => $fileName,'created_at' => $var));
         return redirect()->back()->with('message', 'Se ha subido el documento exitosamente');
     }
 

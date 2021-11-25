@@ -50,25 +50,21 @@
                                         <tr>
                                             <th>Nombre Completo</th>
                                             <th>Documento</th>
+                                            <th>Fecha</th>
                                             <th style="width:16%">Opciones</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-                                        @foreach ($documents as $user)
+                                        @foreach ($documents as $d)
                                         <tr>
-
-                                            <td>{{ $user->first_name ?? '' }} {{ $user->last_name ?? '' }}</td>
-
-                                            <td>{{ $user->email ?? '' }}</td>
-
-                                            <td>@if(isset($user->rol_id))
-                                                {{ $user->rol->name ?? '' }}
-                                                @endif
-                                            </td>
+                                            <td>{{ $d->name ?? null }}</td>
+                                            <td>{{ $d->url_file ?? null }}</td>
+                                            <td>{{ $d->created_at ?? null }}</td>
                                             <td>
-                                                <a class="btn btn-uft btn-sm" href="{{ route('documents.destroy',$user->id) }}"><i class="fas fa-trash"></i></a>
+                                                <a class="btn btn-uft btn-sm" href="{{ route('documents.destroy',$d->id) }}"><i class="fas fa-trash"></i></a>
                                             </td>
+                                            
                                         </tr>
                                         @endforeach
 
