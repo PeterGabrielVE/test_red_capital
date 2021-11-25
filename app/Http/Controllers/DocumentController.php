@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Menu;
 use App\Document;
+use Auth;
 
 class DocumentController extends Controller
 {
@@ -16,8 +17,13 @@ class DocumentController extends Controller
 
     public function index()
     {
-        $documents = DB::table('documents')->leftjoin('users','documents.id_user','users.id')
-        ->select('documents.*','users.name as name')->get();
+        if( Auth::user()->hasRole('user')){
+            $documents = DB::table('documents')->leftjoin('users','documents.id_user','users.id')
+            ->select('documents.*','users.name as name')->where('documents.id_user', Auth::user()->id)->get();
+        }else{
+            $documents = DB::table('documents')->leftjoin('users','documents.id_user','users.id')
+            ->select('documents.*','users.name as name')->get();
+        }
         $users = DB::table('users')->pluck('name','id');
         $menus = Menu::all();
         $submenus = DB::table('submenus')->select('name','id','id_menu')->get();

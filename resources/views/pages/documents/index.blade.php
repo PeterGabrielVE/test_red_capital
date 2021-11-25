@@ -36,9 +36,12 @@
                                     <div class="pull-left">
                                         <h6 class="m-0 font-weight-bold text-uft">Listado Documentos</h6>
                                     </div>
+                                    @can('upload file')
                                     <div class="pull-right">
                                         <a data-toggle="modal" data-target="#create" class="btn btn-uft" role="button"><i class="fas fa-plus pr-2"></i>Agregar Documento</a>
                                     </div>
+                                    @endcan
+                                    
                                 </div>
                             </div>
 
@@ -51,7 +54,9 @@
                                             <th>Nombre Completo</th>
                                             <th>Documento</th>
                                             <th>Fecha</th>
+                                            @can('download file')
                                             <th style="width:16%">Opciones</th>
+                                            @endcan
                                         </tr>
                                     </thead>
 
@@ -62,14 +67,18 @@
 
                                             <td> 
                                                 @if($d->url_file != '' || $d->url_file != null)
-                                                <a class="btn btn-uft btn-sm" href="{{ route('documents.download',$d->id) }}">{{ $d->url_file }}</a>
+                                                {{ $d->url_file }}
                                                 @endif
                                             </td>
                                             <td>{{ $d->created_at ?? null }}</td>
+                                            @can('download file')
                                             <td>
+                                                @if($d->url_file != '' || $d->url_file != null)
+                                                <a class="btn btn-uft btn-sm" href="{{ route('documents.download',$d->id) }}"><i class="fas fa-file"></i></a>
+                                                @endif
                                                 <a class="btn btn-uft btn-sm" href="{{ route('documents.destroy',$d->id) }}"><i class="fas fa-trash"></i></a>
                                             </td>
-                                            
+                                            @endcan
                                         </tr>
                                         @endforeach
 
