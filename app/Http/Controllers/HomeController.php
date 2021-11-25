@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Menu;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $menus = Menu::all();
+        $submenus = DB::table('submenus')->select('name','id','id_menu')->get();
+        return view('home', ['menus' => $menus,'submenus' => $submenus]);
     }
 }

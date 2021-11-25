@@ -18,31 +18,30 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
+            @foreach($menus as $m)
             <li class="nav-item active">
-                <a class="nav-link text-uft" href="{{ route('home') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Principal</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed text-uft" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Configuración</span>
-                </a>
+                <a class="nav-link text-uft collapsed" href="#" @if($m->submenu() > 0) data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities" @endif><i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>{{ $m->name ?? null }}</span></a>
+                @if($m->submenu() > 0)
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-uft  py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="">Lapso</a>
+                    @foreach($submenus as $s)
+                            @if($m->id === $s->id_menu)
+                            <a class="collapse-item" href=""> {{ $loop->iteration }}. {{ $s->name }}</a>
+                            @endif
+                    @endforeach  
                     </div>
                 </div>
+                @endif
+
+
+                
             </li>
             <hr class="sidebar-divider">
+            @endforeach
+            <!-- Nav Item - Pages Collapse Menu -->
         </ul>
 
 
