@@ -29,7 +29,7 @@
                     <div class="bg-uft  py-2 collapse-inner rounded">
                     @foreach($submenus as $s)
                             @if($m->id === $s->id_menu)
-                            <a class="collapse-item" href=""> {{ $loop->iteration }}. {{ $s->name }}</a>
+                            <a class="collapse-item" href="{{ url($s->name)}}"> {{ $loop->iteration }}. {{ $s->name }}</a>
                             @endif
                     @endforeach  
                     </div>

@@ -50,4 +50,19 @@ class DocumentController extends Controller
         return response()->download($pathToFile);           
     }
 
+    public function destroy($id)
+    {
+        dd($id);
+        $document = Document::find($id);
+        $document->delete();
+        return redirect()->back()->with('message', 'Se ha eliminado el documento');
+    }
+
+    public function show($id)
+    {
+        $document = Document::find($id);
+        $document->delete();
+        return redirect()->back()->with('message', 'Se ha eliminado el documento');
+    }
+
 }

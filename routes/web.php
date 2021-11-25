@@ -24,5 +24,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('documents', 'DocumentController');
 Route::get('documents/download/{id?}', 'DocumentController@download')->name('documents.download');
 Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index'])->name('logs');
+Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
 
 
