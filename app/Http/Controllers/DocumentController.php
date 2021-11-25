@@ -30,19 +30,15 @@ class DocumentController extends Controller
         $arr = [];
         $files = $request->file('files');
         if($request->hasFile('files')) :
-            foreach ($files as $item):
                 $var = date_create();
                 $time = date_format($var, 'YmdHis');
-                $fileName = $time . '-' . $item->getClientOriginalName();
-                $item->move(base_path() . '/uploads/', $imageName);
-                $arr[] = $fileName;
-            endforeach;
-            $file = implode(",", $arr);
+                $fileName = $time . '-' . $files->extension();
+                $files->move(public_path('uploads'), $fileName);
         else:
-            $file = '';
+            return redirect()->back()->with('error', 'Seleccione documento');
         endif;
 
-        DB::table('documents')->insert(array('id_user' => $request->id_user,'url_file' => $file));
+        DB::table('documents')->insert(array('id_user' => $request->id_user,'url_file' => $fileName));
         return redirect()->back()->with('message', 'Se ha subido el documento exitosamente');
     }
 
