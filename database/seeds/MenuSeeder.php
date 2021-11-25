@@ -13,6 +13,7 @@ class MenuSeeder extends Seeder
     public function run()
     {
         Menu::create(['name' => 'Principal']);
+        Menu::create(['name' => 'Archivos']);
         Menu::create(['name' => 'Configuración']);
     }
 }

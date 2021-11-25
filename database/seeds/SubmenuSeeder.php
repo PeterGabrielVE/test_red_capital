@@ -12,17 +12,17 @@ class SubmenuSeeder extends Seeder
      */
     public function run()
     {
-        Submenu::create(['id_menu'=> '2','name' => 'Ejecutivos']);
-        Submenu::create(['id_menu'=> '2','name' => 'Imagenes']);
-        Submenu::create(['id_menu'=> '2','name' => 'SGR']);
-        Submenu::create(['id_menu'=> '2','name' => 'IVA']);
+        Submenu::create(['id_menu'=> '3','name' => 'Ejecutivos']);
+        Submenu::create(['id_menu'=> '3','name' => 'Imagenes']);
+        Submenu::create(['id_menu'=> '3','name' => 'SGR']);
+        Submenu::create(['id_menu'=> '3','name' => 'IVA']);
 
-        Submenu::create(['id_menu'=> '2','name' => 'Paises']);
-        Submenu::create(['id_menu'=> '2','name' => 'Monedas']);
-        Submenu::create(['id_menu'=> '2','name' => 'Uso plataforma']);
-        Submenu::create(['id_menu'=> '2','name' => 'Notarias']);
-        Submenu::create(['id_menu'=> '2','name' => 'Submnenus']);
-        Submenu::create(['id_menu'=> '2','name' => 'Submenus Actions']);
-        Submenu::create(['id_menu'=> '2','name' => 'Carga Masiva Proyectos']);
+        Submenu::create(['id_menu'=> '3','name' => 'Paises']);
+        Submenu::create(['id_menu'=> '3','name' => 'Monedas']);
+        Submenu::create(['id_menu'=> '3','name' => 'Uso plataforma']);
+        Submenu::create(['id_menu'=> '3','name' => 'Notarias']);
+        Submenu::create(['id_menu'=> '3','name' => 'Submnenus']);
+        Submenu::create(['id_menu'=> '3','name' => 'Submenus Actions']);
+        Submenu::create(['id_menu'=> '3','name' => 'Carga Masiva Proyectos']);
     }
 }

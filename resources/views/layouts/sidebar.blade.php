@@ -20,7 +20,7 @@
             <!-- Nav Item - Dashboard -->
             @foreach($menus as $m)
             <li class="nav-item active">
-                <a class="nav-link text-uft collapsed" href="#" @if($m->submenu() > 0) data-toggle="collapse" data-target="#collapseUtilities"
+                <a class="nav-link text-uft collapsed" @if($m->id == 2)href="{{ route('documents')}}" @else href="#" @endif @if($m->submenu() > 0) data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities" @endif><i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>{{ $m->name ?? null }}</span></a>
                 @if($m->submenu() > 0)
