@@ -38,13 +38,17 @@
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
-                        <a class="dropdown-item text-white" href="{{ route('logout') }}" data-toggle="modal" data-target="#logoutModal" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
-                                  {{ __('Cerrar sesión') }}
-                                </a>
-                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            <a class="dropdown-item text-white" href="{{ route('logout') }}" data-toggle="modal" data-target="#logoutModal" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
+                                {{ __('Cerrar sesión') }}
+                            </a>
+                            <a class="dropdown-item text-white" href="{{ route('logs') }}" target="_blank">
+                                <i class="fas fa-bug fa-sm fa-fw mr-2"></i>
+                                {{ __('Logs') }}
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     @csrf
-                                </form>
+                            </form>
                     </ul>
 
                 </nav>
