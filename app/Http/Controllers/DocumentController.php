@@ -32,43 +32,62 @@ class DocumentController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'files' => 'required|mimes:pdf,xlx,csv,jpg,png,txt,ppt|max:2048',
-        ]);
-        $arr = [];
-        $files = $request->file('files');
-        if($request->hasFile('files')) :
-                $var = date_create();
-                $time = date_format($var, 'YmdHis');
-                $fileName = $time . '.' . $files->extension();
-                $files->move(public_path('uploads'), $fileName);
-        else:
-            return redirect()->back()->with('error', 'Seleccione documento');
-        endif;
+        try {
+            $request->validate([
+                'files' => 'required|mimes:pdf,xlx,csv,jpg,png,txt,ppt|max:2048',
+            ]);
+            $arr = [];
+            $files = $request->file('files');
+            if($request->hasFile('files')) :
+                    $var = date_create();
+                    $time = date_format($var, 'YmdHis');
+                    $fileName = $time . '.' . $files->extension();
+                    $files->move(public_path('uploads'), $fileName);
+            else:
+                return redirect()->back()->with('error', 'Seleccione documento');
+            endif;
+    
+            DB::table('documents')->insert(array('id_user' => $request->id_user,'url_file' => $fileName,'created_at' => $var));
+            return redirect()->back()->with('message', 'Se ha subido el documento exitosamente');       
+        } catch (Exception $e) {
+            report($e);
+        } 
 
-        DB::table('documents')->insert(array('id_user' => $request->id_user,'url_file' => $fileName,'created_at' => $var));
-        return redirect()->back()->with('message', 'Se ha subido el documento exitosamente');
     }
 
     public function download($fileId){  
-        $entry = Document::where('id',$fileId)->firstOrFail();
-        $pathToFile=public_path('uploads').'/'.$entry->url_file;
-        return response()->download($pathToFile);           
+
+        try {
+            $entry = Document::where('id',$fileId)->firstOrFail();
+            $pathToFile=public_path('uploads').'/'.$entry->url_file;
+            return response()->download($pathToFile);         
+        } catch (Exception $e) {
+            report($e);
+        }  
     }
 
     public function destroy($id)
     {
-        dd($id);
-        $document = Document::find($id);
-        $document->delete();
-        return redirect()->back()->with('message', 'Se ha eliminado el documento');
+        try {
+            $document = Document::find($id);
+            $document->delete();
+            return redirect()->back()->with('message', 'Se ha eliminado el documento');
+        } catch (Exception $e) {
+            report($e);
+            return false;
+        }
     }
 
     public function show($id)
     {
-        $document = Document::find($id);
-        $document->delete();
-        return redirect()->back()->with('message', 'Se ha eliminado el documento');
+        try {
+            $document = Document::find($id);
+            $document->delete();
+            return redirect()->back()->with('message', 'Se ha eliminado el documento');
+        } catch (Exception $e) {
+            report($e);
+            return false;
+        }
     }
 
 }
